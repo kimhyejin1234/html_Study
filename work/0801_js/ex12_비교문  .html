@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 400px;
+            height: 300px;
+            border: 1px solid blue;
+            font-size: 100px;
+            font-weight: bold;
+            text-align: center;
+            line-height: 300px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <form method="post">
+        <label for="score">점수입력:</label>
+        <input type="text" id="score" name="u_score"/><br/>
+        <button type="button" onclick="test()">확인</button>
+    </form>
+    <div id="box">
+
+    </div>
+    <script>
+
+        function test(){
+            //현재 문서에서 아이디가 score 인 요소의 값(value) 을 얻어낸다.
+            let v1 = document.getElementById("score").value;
+            
+            //95이상이면 A+. 90이상이면 A- , 85~89 B+ , 80~84 : B- . 75_79 : C+ , 70~74 : C- , 65~69 : D , 그이외 F
+            let value = parseInt(v1);
+
+            let chgtag = document.getElementById("box");
+
+            if(value >= 95){
+                chgtag.innerText = "A+";
+            }else if(value >= 90)
+                chgtag.innerText = "A-";
+            else if(value >= 85)
+                chgtag.innerText = "B+";
+            else if(value >= 80)
+                chgtag.innerText = "B-";
+            else if(value >= 75)
+                chgtag.innerText = "C+";        
+            else if(value >= 70)
+                chgtag.innerText = "C-";        
+            else if(value >= 65)
+                chgtag.innerText = "D";        
+            else    
+                chgtag.innerText = "F";
+        }
+
+        
+
+    </script>
+</body>
+</html>

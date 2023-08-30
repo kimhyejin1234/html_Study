@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 class="test">여기는h1</h1>
+    <p>p요소1</p>
+    <p>p요소2</p>
+    <p>p요소3</p>
+
+    <span>이것은 span</span>
+    <p class="test">p요소1</p>
+    <p>p요소5</p>
+    <div>여긴div</div>
+    
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script>
+        $(function(){
+            let str = ""; //문자열을 저장할 변수 선언
+            /*
+            //test라는 클래스를 가진 요소(h1,p) ,
+            //span , div 요소들을 하나의 배열로 수집한다.
+            let ar = $(".test,span , div"); 
+
+
+            
+            for(let i = 0 ; i < ar.length ; i++){
+                // str += ar[i].innerText + ","; //자바스트립트 문법
+                str += +","; //제이쿼리에서는 text 함수 ,eq 함수
+                                           //(인덱스 값을 사용해 원하는 위치의 요소를 선택)
+            }//for 문의 끝
+            */
+            //또는
+            // $("input[:checkbox]").each(function(){
+            $(".test , span , div ").each(function(){
+                //위의 선택자에 해당되는 요소를 만날 때마다
+                //현재 영역을 수행한다.
+                
+                str += $(this).text() + ",";
+            });
+
+            alert(str);
+        });
+
+    </script>
+    
+
+
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        nav{
+            height: 40px;
+            font-weight: bold;
+        }
+        nav ul{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        nav ul li{
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        /* 화면 너비가 800 이상이면 아래 실행 ex)pc */
+        @media all and (min-width:800px) {
+            article{width: 100%;}
+            nav{
+                border: 2px solid #f00;
+                width: 100%;
+            }
+            section{
+                display: inline-block;
+                width: 60%;
+                border: 2px solid #0f0;
+                
+            }
+            aside{
+                display: inline-block;
+                width: 20%;
+                border: 2px solid blue;
+            }
+        }
+
+        /* 화면 너비가 800 이 안되면아래 실행 ex)태블릿 pc */
+        @media all and (min-width:400px) and (max-width:800px)  {
+            article{width: 800px;}
+            nav{
+                border: 2px solid #f00;
+                width: 80%;
+                margin: auto;
+                display: flex;
+                justify-content: space-around;
+
+            }
+            section{
+                display: inline-block;
+                width: 596px;
+                border: 2px solid #0f0;
+                
+            }
+            aside{
+                display: inline-block;
+                width: 596px;
+                border: 2px solid blue;
+                background-color: #898989;
+                color: #fff;
+            }
+            nav ul li{
+                margin: auto;
+                width: 150px;
+                text-align: center;
+            }
+        }
+
+           /* 화면 너비가 399 이하 아래 실행 ex)휴대폰 */
+        @media all and (max-width:399px) {
+            article{width: 320px;}
+            nav{
+                /* border: 2px solid #f00; */
+                width: 316px;
+            }
+            section{
+                display: inline-block;
+                width: 316px;
+                border: 2px solid #0f0;
+                
+            }
+            aside{
+                display: inline-block;
+                width: 316px;
+                border: 2px solid blue;
+            }
+            nav ul li{
+                
+                width: 316px;
+                text-align: center;
+                background-color: aqua;
+                border: 1px solid blue;
+
+            }
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <nav>
+            <ul>
+                <li><a href="#">Menu01</a></li>
+                <li><a href="#">Menu02</a></li>
+                <li><a href="#">Menu03</a></li>
+                <li><a href="#">Menu04</a></li>
+                <li><a href="#">Menu05</a></li>
+                <li><a href="#">Menu06</a></li>
+            </ul>
+        </nav>
+    </section>
+    <section>
+        <header>
+            <h2>Media Queries Test</h2>
+        </header>
+        <p>
+            스테이크(영어: steak)는 고기를 두툼하게 썰어서 굽거나 지진 서양 요리이다.[1]<br/>
+            영어권에서 "스테이크"는 일반적으로 근섬유를 가로지르는 방향으로 자른 쇠고기 부위 또는 생선 등뼈를 가로지르는 방향에 따라 자른 고기 덩어리를 말한다. 고기 스테이크로는 보통 석쇠에서 직화구이를 하거나, 프라이팬, 오븐에서 굽는다. 생선 스테이크 역시 굽는 것이 거의 대부분이다.<br/>
+            또 스테이크는 스테이크 앤드 키드니 파이나 다진고기를 스테이크 형태로 만든 햄버그 스테이크, 햄버거와 같이 여러 요리로 사용된다. 아무런 조건 없이 "스테이크"라는 단어를 말할 때 거의 대부분 비프스테이크를 지칭한다. 다른 육류로 만들어진 스테이크를 말할 때는 황새치 스테이크, 사슴고기 스테이크와 같이 동물 이름을 붙여 부른다.<br/>
+            요리<br/>
+        </p>        
+    </section>
+    <aside>
+        <p>sideMenu1</p>
+        <p>sideMenu2</p>
+        <p>sideMenu3</p>
+    </aside>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #can1{
+            border: 3px dotted black;
+
+        }
+    </style>
+</head>
+<body>
+    <h1>Canvas연습</h1>
+    <canvas id="can1" width="400" height="300">
+        현재 브라우저에서 canvas를 지원 안하면 안보인다.
+    </canvas>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script>
+        //body에 onload 이벤트 속성 지정과 같은 효과
+        window.onload = function(){
+            // console.log("윈도우onload");
+            //현재 문서에서 아이디가 can1 인 Canvas 요소를 얻어낸다.
+            let mc = document.getElementById("can1");
+
+            //캔버스를 얻어낸 이유는 그 안에 그림을 그리기 위함이다.
+            //그렇다면 붓과 같은 객체를 캔버스로 부더 얻어낸다.
+            let ctx = mc.getContext("2d"); 
+            //붓과 같은 객체인 ctx 가 받아졌을 때만  수행하자!
+            if(ctx){
+                ctx.fillStyle = "#0f0";
+                ctx.fillRect(10,25,100,100);//x,y,너비,높이
+                
+                ctx.lineWidth = 5;//선의 두께
+                // ctx.strokeStyle = "rgb(0,0,0)";//선의 색깔, red , green , blue r
+                ctx.strokeStyle = "rgba(0,0,0,0.4)";//선의 색깔 마지막 a 가 Alpha
+                ctx.strokeRect(5,20,110,110); // 선의 좌표
+            }
+        }
+    </script>
+</body>
+</html>

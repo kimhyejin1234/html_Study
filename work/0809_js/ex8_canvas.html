@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #can1{
+            border: 3px dotted black;
+
+        }
+    </style>
+</head>
+<body>
+    <h1>Canvas연습</h1>
+    <canvas id="can1" width="600" height="300">
+        현재 브라우저에서 canvas를 지원 안하면 안보인다.
+    </canvas>
+    <script>
+        //body에 onload 이벤트 속성 지정과 같은 효과
+        window.onload = function(){
+            // console.log("윈도우onload");
+            //현재 문서에서 아이디가 can1 인 Canvas 요소를 얻어낸다.
+            let mc = document.getElementById("can1");
+
+            //캔버스를 얻어낸 이유는 그 안에 그림을 그리기 위함이다.
+            //그렇다면 붓과 같은 객체를 캔버스로 부더 얻어낸다.
+            let ctx = mc.getContext("2d"); 
+            //붓과 같은 객체인 ctx 가 받아졌을 때만  수행하자!
+            if(ctx){
+                ctx.strokeStyle = "#00f";
+                ctx.fillStyle = "#f00";
+                ctx.lineWidth = 5;
+
+                //점들의 집합인 path 를 시작합니다.
+                ctx.beginPath();
+                ctx.moveTo(25,175); // 시작점으로 이동한다.
+                ctx.lineTo(50,25); // 선을 그린다.
+                ctx.lineTo(125,50); // 선을 그린다.
+                ctx.lineTo(175,175); // 선을 그린다.
+                ctx.stroke(); //그려지는 모습 확인
+                //path 의 시작은 있었지만 닫지는 않았다.
+
+                //점들의 집합인 path 를 시작합니다.
+                ctx.beginPath();
+                ctx.moveTo(225,175); // 시작점으로 이동한다.
+                ctx.lineTo(250,25); // 선을 그린다.
+                ctx.lineTo(325,50); // 선을 그린다.
+                ctx.lineTo(375,175); // 선을 그린다.
+                // ctx.lineTo(225,175); // 선을 그린다.
+                ctx.closePath(); //시작점으로 돌아가 닫는다
+                ctx.stroke(); //그려지는 모습 확인
+
+                //점들의 집합인 path 를 시작합니다.
+                ctx.beginPath();
+                ctx.moveTo(425,175); // 시작점으로 이동한다.
+                ctx.lineTo(450,25); // 선을 그린다.
+                ctx.lineTo(525,50); // 선을 그린다.
+                ctx.lineTo(575,175); // 선을 그린다.
+                ctx.closePath(); //시작점으로 돌아가 닫는다
+                ctx.fill(); //색깔이 채워진다.
+                ctx.stroke(); //그려지는 모습 확인
+                
+
+                
+                
+            }
+        }
+    </script>
+</body>
+</html>

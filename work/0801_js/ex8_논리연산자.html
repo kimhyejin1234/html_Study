@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //논리 연산자는 &&(그리고), ||(또는) , !(부정) , 
+        let a = 10;
+        let b = 8;
+
+        let c = (a > b && b != 0);
+        document.write(c);//true
+        document.write("<br/>");
+        c = (++a < b-- && ++a != 0)    // a=11<8 && 12 <> 0 ==> f & t ==> f
+                                // && 조건은 앞에서 false 이면 뒤는 실행하지(++a) 않는다. 그러므로
+                                // a 는 11 이 된다       
+        document.write(c);//false    
+        document.write("<br/>");
+        document.write(a);//11  
+        document.write("<br/>");  
+        document.write(b);//7    
+
+        // 연산자의 우선 목표는 true 이다. true 가 나오는 조건을 만나면 더이상 실행되지 않는다
+        
+    </script>
+
+
+</body>
+</html>

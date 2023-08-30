@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 300px;
+            height: 200px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <form action="">
+        <label for="b_year">태어난 년도</label>
+        <input type="text" id="b_year" name="birth_year"/>
+        <button type="button" onclick="exe(this.form)">확인</button>
+    </form>
+    <br/>
+    <div id="box">    </div>
+    <script>
+        let box = document.getElementById("box");
+        function exe(ff){
+            // 인자로 받은 ff 라는 변수는 exe 라는 함수 안에서만 
+            // 사용할수 있는 지역변수다.
+            // let b_val = document.getElementById("b_year").value;
+
+            let b_val = ff.birth_year.value;// form 으로 받으면 이름으로 사용
+            // console.log(b_val);
+            
+           //사용자가 입력한 연도의 값을 checkNumber 라는 함수를 호출하면서
+           //전달(b_val) 하여 숫자만 있는지? 판단하여 결과(res)를 받아야 한다. 
+           let res = checkNumber(b_val);
+            
+
+            // 문자가 하나라도 있다면, chk 의 값은 true다 
+            // console.log(res);
+            // if(res=="false"){ //res이 fales 일 경우(숫자만 있는 경우)
+            if(!res){
+                //숫자만 입력되었을 때만 수행하는 곳!
+                let now = new Date(); //현재날짜 구하기
+                // console.log(now);
+
+                //현재 날짜의 년도만 검출하자!
+                let c_year = now.getFullYear();
+                // console.log(c_year);
+
+                // 나이 구하자(현재년도 - 태어난 년도)
+                let age = c_year - b_val;
+                let msg = "";
+                if(age <19){
+                    msg = age + "세이므로 미성년!!";
+                } 
+                else{
+                    msg = age + "세이므로 성년!!";
+                }
+                box.innerHTML=msg;
+            }else
+                box.innerHTML="문자 또는 공백이 포함되어 안됩니다.";
+        }
+
+        //자주 사용하는 logic 은 함수로 뺄수 있다
+        function checkNumber(str){ //str 은 전달받을 문자열 인자
+            let chk = false; //chk 는 문자가 하나라도 있다면 trye 가 되는 지역변수
+            for(let i = 0 ; i < str.length ; i++){
+                // str 에서 문자 하나를 가져와서 ch 에 저장하자.
+                let ch = str.charAt(i);
+                
+                //얻어낸 문자가 숫자가 아닐때 chk 을 값을 true 로 변경한 후
+                // 현재 반복문을 탈출한다.
+                if(ch < '0' || ch > '9'){
+                    chk = true;
+                    break; //가장 가까운 반복문을 빠져 나온다. 여기서는 for 문
+                }
+            }//for문의 끝
+            return chk; //호출한 곳으로 chk 의 값을 보낸다.(반환값)
+
+        }
+    </script>
+</body>
+</html>

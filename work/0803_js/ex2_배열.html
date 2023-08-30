@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            width: 300px;
+            height: 300px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        //배열 선언,생성,초기화 한번에 수행
+        let ar1 = ["자바","스프링","파이썬"];
+        let msg="";
+        let box = document.getElementById("box");
+        for(let i = 0 ; i < ar1.length ; i++){
+            msg += ar1[i] + "<br/>";
+        }
+        
+        
+        let ar2 = new Array(4);
+        for(let i = 0 ; i < ar2.length ; i++){
+            ar2[i] = (i+1) * 100;//초기화
+            msg += ar2[i] + "<br/>";
+        }
+        box.innerHTML=msg;
+
+    </script>
+</body>
+</html>

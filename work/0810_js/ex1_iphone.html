@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas width="600" height="400" id="myCanvas" style="border: 1px solid black;">
+        현재 브라우저는 canvas 를 지원하지 않습니다.
+    </canvas>
+    <!-- <img src="asset/images/tree.jpg" style="display: none;" id="img1"/> -->
+
+    <script>
+        window.onload = function(){
+            //무조건 수행하는 영역
+
+            //아이디가 myCanvas 인 요소를 검색한다.
+            let canvas = document.getElementById("myCanvas");
+            let ctx = canvas.getContext("2d");
+
+            if(ctx){
+
+                //휴대폰 모약을 그린다.
+                ctx.beginPath();
+                ctx.moveTo(100,40);
+                ctx.quadraticCurveTo(100,20,120,20);
+                ctx.lineTo(280,20);
+
+                ctx.quadraticCurveTo(300,20,300,40);
+                ctx.lineTo(300,360);
+
+                ctx.quadraticCurveTo(300,380,280,380);
+                ctx.lineTo(120,380);
+
+                ctx.quadraticCurveTo(100,380,100,360);
+                ctx.lineTo(100,40);
+
+                /*
+                원형 그라데이션 효과를 이용하여 빛을 받은 효과:인자(x,y,r,x2,y2,r2)는
+                x,y는 중심정에서 반지금 r인 원에서 x2,y2의 중심점의 r2 만큼의 반지름인
+                원 사이의 색이 변화한다.
+                */
+                let radialGradient = ctx.createRadialGradient(120,20,0,120,20,120);
+                //각 지점의 색을 지정 0.0 은 시작점의 색
+                // radialGradient.addColorStop(0.0,"#f00"); //빨간색
+                radialGradient.addColorStop(0.0,"#555"); //약간 검은색
+                //각 지점의 색을 지정 1.0 은 끝지점의 색 
+                radialGradient.addColorStop(1.0,"#000"); //검은색
+                ctx.fillStyle = radialGradient;
+
+                //그림자 효과를 넣기 전 상태를 일단 저장한다.
+                ctx.save();
+
+                //그림자 효과를 넣어보자
+                ctx.shadowOffsetX = 6;
+                ctx.shadowOffsetY = 8;
+                ctx.shadowBlur = 6
+                ctx.shadowColor = "rgba(0,0,0,6)";
+                ctx.fill();
+                
+                //그림자 효과가 들어가지 않은 상태를 다시 불러온다
+                ctx.restore();
+
+                //스피커
+                ctx.beginPath();
+                ctx.strokeStyle = "#3d3d3d";
+                ctx.lineWidth = 7;
+                ctx.lineCap = "round";
+                ctx.moveTo(170,50);
+                ctx.lineTo(230,50);
+                ctx.stroke();
+
+                //홈버트 외곽선
+                ctx.beginPath();
+                ctx.lineWidth = 2;
+                // ctx.strokeStyle = "#3d3d3d";
+                ctx.arc(200,350,17,0,2*Math.PI,true );
+                ctx.stroke();
+
+                //버튼의 내부(선형 그라데이션)
+                let lineaerGradient = ctx.createLinearGradient(0,342,0,358);
+                lineaerGradient.addColorStop(0,"#999999");
+                lineaerGradient.addColorStop(0.4,"#5e5e5e");
+                lineaerGradient.addColorStop(1,"#888888");
+                
+                ctx.fillStyle=lineaerGradient;
+                ctx.beginPath();
+                ctx.arc(200,350,16,0,Math.PI*2,true)
+                ctx.fill();
+
+                ctx.beginPath();
+                ctx.strokeStyle = "#ddd";
+                ctx.lineWidth = 1;
+                ctx.strokeRect(194,344,12,12);
+
+                //이번에는 액정 부분을 그린다. 시계표현
+                let img = document.createElement("img");// <img></img>
+                img.src = "asset/images/tree.jpg";
+                // let img = document.getElementById("img1");
+
+                //img 에 연결한 이미지가 로드될때 ..(이벤트 적용)
+                img.onload = function(){
+                    //img 요소를 가리키는 this 를 미리 저장해 놓는다.
+                    let img_Elem = this;
+
+                    setInterval(function(){
+                        //미리 저장했던 img 요소를 그려보자
+                        ctx.drawImage(img_Elem,110,80,180,240);
+
+                        ctx.fillStyle = "rgba(0,0,0,0.4)";
+                        ctx.fillRect(100,80,190,60);
+
+                        ctx.font = "40px arial";
+                        ctx.fillStyle ="#fff";
+                        ctx.textAlign = "center";
+
+                        //현재 날짜 정보를 얻어내어 시/분/초를 각각 가져온다.
+                        let currenTime = new Date();
+                        let hours = currenTime.getHours();
+                        let minutes = currenTime.getMinutes();
+                        let seconds = currenTime.getSeconds();
+
+                        //위의 시/분/초 정보들을 "11:19:30" 형태의 문자열을 만들자
+                        let msg = "";
+                        //분과 초가 1자리수 이면 앞에 "0" 을 붙여준다.
+                        hours = (hours<10)?"0"+hours:hours;
+                        minutes = (minutes<10)?"0"+minutes:minutes;
+                        seconds = (seconds<10)?"0"+seconds:seconds;
+                        msg = hours + ":" + minutes + ":" + seconds;
+                        ctx.fillText(msg,200,120);
+
+
+                        //현재 날짜를 만들어 준다
+                        let month = currenTime.getMonth();
+                        let day = currenTime.getDay();
+                        let yy = currenTime.getFullYear();
+                        month = month + 1 ;
+                        msg = yy + "년" + month + "월" + day + "일";
+                        ctx.font = "12px arial";
+                        ctx.fillText(msg,200,137);
+                        
+
+                   },1000);
+                };
+                
+
+
+            }
+        };
+    </script>
+</body>
+</html>

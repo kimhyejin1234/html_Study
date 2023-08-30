@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        let ar = new Array(10);
+
+        //1~10 까지 초기화(값 할당) 해주는 반복문 생성~
+        for(let i = 0 ; i < ar.length ; i++){
+            ar[i] = i + 1;
+
+        } //i 라는 변수는 지역변수
+
+        // ar 이라는 배열을 처리하면서 3의 배수를 만나면 
+        // 반복문을 탈출하자!
+        for(let i = 0 ; i < ar.length ; i++){
+            console.log(ar[i]);
+            if (ar[i] % 3 == 0 ){
+                break;
+            }
+        }
+
+    </script>
+
+</body>
+</html>

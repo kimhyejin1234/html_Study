@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        
+        #box{
+            position: absolute;
+            width: 300px;
+            height: 160px;
+            border: 1px solid red;
+            font-size: 10px;
+            font-weight: bold;
+            text-align: center;
+            line-height: 160px;
+            color: red;
+            left: 30px ;
+            top: 60px;
+        }
+    </style>
+
+</head>
+<body>
+    <form method="post">
+        <label for="age">나이</label>
+        <input type="text" id="s_age" name="u_age">
+        <button type="button" onclick="test()">확인</button> 
+    </form>
+    <div id="box"></div>
+    <script>
+        let box = document.getElementById("box");
+        function test(){
+            let age = parseInt(document.getElementById("s_age").value);
+            if(age <= 10) 
+                box.innerText = ("아기 입니다.");
+            else    
+                box.innerText = ("아기 아닙니다.");
+        }
+    </script>
+
+</body>
+</html>

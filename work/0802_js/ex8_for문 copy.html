@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+</head>
+<body onload="exe()"> //body 가 끝까지 간 후에 exe() 함수를 호출한다
+    
+    
+    <script>
+
+        function exe(){
+            let dan = prompt("단 입력");
+            /*
+               2*1 = 2
+               2*2 = 4
+               .... 
+            */
+            for(i = 1 ; i <= 9 ; i++){
+
+                let j = dan * i;
+                document.write( dan + "*" + i + "=" + dan * i + "<br/>");
+
+            }
+        }
+    </script>
+</body>
+</html>

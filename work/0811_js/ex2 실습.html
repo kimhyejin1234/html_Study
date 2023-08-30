@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #enc{
+            width: 150px;
+            padding: 5px;
+            
+        }
+        fieldset{
+            width: 500px;
+            margin: 50px auto 50px;/*위쪽/아래   좌/우 */
+            border: 1px solid black;
+        }
+        
+        #contents{
+            width: 800px;
+            margin: 50px auto;/*위쪽/아래   좌/우 */
+            margin-bottom: 0px;
+            
+        }
+        
+        li{
+            display: inline-block;
+            width: 210px;
+            height: 250px;
+            border: 2px solid goldenrod;
+            margin: 10px 0px 46px 46px;   
+            text-align: center;
+            
+            
+        }
+        li>img{
+            display: inline-block;
+            width: 200px;
+            height: 200px;
+            margin-top: 3px;
+            border: 1px solid burlywood;
+        }
+        li>span{
+            display: block;
+            font-size: 13px;
+            width: 200px;
+            height: 20px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            
+        }
+        #sel{
+            height: 22px;
+        }
+        
+    </style>
+</head>
+<body>
+    <form action="" method="post">
+        <fieldset>
+            <!-- <legend></legend> -->
+            <select id="enc" >
+                <option value="brand" >제조회사</option>
+                <option value="product_type">제품타입</option>
+                <option value="price_greater_than">최고가격</option>
+            </select>
+            <input type="text" id="sel"/>
+            <button type="button" onclick="exe()">검색</button>
+        </fieldset>
+    </form>
+    <div id="contents">
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script>
+        function exe(){
+            //서버호출 (동기식)
+            // document.forms[0].submit();
+
+            //사용자가 입력한 select 조건을 가져온다
+            let enc = $("#enc").val();
+            let sel = $("#sel").val();
+            let msg = "";
+            if(sel.trim().length > 0){
+                //서버호출 (비동기식)
+                let param = enc+"="+sel;
+                // data: "brand=" + comp,
+                $.ajax({
+                    
+                    // url: "호출하고자_하는_서버경로",
+                    // data: {"서버로_보내고자_하는_파라미터(인자)"},
+                    // type: "전송방식(get/post)",
+                    // dataType: "서버로부터_응답되어오는_자원(return되는_자료형)"
+                    url: "http://makeup-api.herokuapp.com/api/v1/products.json",
+                    data: param,
+                    type: "get",
+                    dataType: "json"
+                }).done(function(data){
+                    //요청에 성공했을 때 수행하는 곳
+                    //data 가 서버로 부터 전달되어오는 return 값이다.
+                    for(let i=0;i<data.length;i++){
+                            msg += "<li><img src='"+data[i].image_link+"'>";
+                            msg += "<span><a href='"+ data[i].product_link+"'>"
+                                + data[i].name+
+                                "</a></span>";
+                            msg += "<span><a>"
+                                + "$" + data[i].price+
+                                "</a></span></li>";
+                    }//for의 끝
+                    // document.getElementById("box").innerHTML = msg;
+                    $("#contents").html(msg);
+                }).fail(function(err){
+                    //요청시 오류가 발생했을 때 수행하는 곳
+                });
+            }//if 문의 끝
+        }
+
+    
+ 
+
+           
+    </script>
+</body>
+</html>

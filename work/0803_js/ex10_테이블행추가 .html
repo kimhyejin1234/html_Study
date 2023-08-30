@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #t1{
+            width: 300px;
+            border-collapse: collapse;
+        }
+        #t1 th,#t1 td{
+            border: 1px solid black;
+            padding: 4px;
+
+        }
+
+        #t1 caption{
+            text-indent: -99999px;
+            height: 0;
+            /* border: 1px solid black; */
+        }
+        #t1 thead>tr:first-child>td{
+            text-align: right;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    
+    <h2>테이블 행 추가</h2>
+    <table id="t1">
+        <caption>행추가 테이블</caption>
+        <thead>
+            <tr>
+                <td colspan="3">
+                    <input type="button" value="추가" onclick="addRow()"/>
+                </td>
+            </tr>
+            <tr>
+                <th>번호</th>
+                <th>이름</th>
+                <th>연락처</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    
+    <script>
+        let msg="";
+        let idx=0;
+        function addRow(){
+            //추가 버튼을 클릭할 때마다 호출하는 곳
+
+            //td 라는 요소를 3개 만든다
+            let td1= document.createElement("td");//<td></td> 와 같다
+            td1.innerText = ++idx; //<td>1</td>
+
+            let td2= document.createElement("td");//<td></td> 와 같다
+            td2.innerText = "마루치"; //<td>마루치</td>
+
+            let td3= document.createElement("td");//<td></td> 와 같다
+            td3.innerText = "012-1313-2333"; //<td>012-1313-2333</td>
+
+            //위의 각 td 들을 가질 tr 요소를 생성하자
+            let tr = document.createElement("tr");
+
+            //tr 안에 td 들을 자식요소로추가해야 한다.
+            tr.style.textAlign="center";//문자열 가운데 맞춘다
+
+            tr.appendChild(td1);// tr 에 td 를 추가한다
+            tr.appendChild(td2);
+            tr.appendChild(td3); //<tr><td>1</td><td>마루치</td><td>012-1313-2333</td></tr>
+
+            let table=document.getElementById("t1");//table 을 얻어낸다
+            let tbody = table.children[2];//table 의 3번째 자식 요소
+            tbody.appendChild(tr);//tbody 에 tr 을 추가한다
+
+        }
+
+    </script>
+
+</body>
+</html>

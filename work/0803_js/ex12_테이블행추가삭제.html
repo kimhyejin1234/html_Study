@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #t1{
+            width: 300px;
+            border-collapse: collapse;
+        }
+        #t1 th,#t1 td{
+            border: 1px solid black;
+            padding: 4px;
+
+        }
+
+        #t1 caption{
+            text-indent: -99999px;
+            height: 0;
+            /* border: 1px solid black; */
+        }
+        #t1 thead>tr:first-child>td{
+            text-align: right;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    
+    <h2>테이블 행 추가</h2>
+    <form>
+        <label for="s_name">이름</label>
+        <input type="text" id="s_name" name="u_name"/>
+        <br/>
+
+        <label for="s_phone">연락처</label>
+        <input type="text" id="s_phone" name="u_phone"/>
+        <!-- <br/> -->
+
+        
+        <input type="button" value="확인" onclick="addRow()"/>
+        
+        <!-- 위 버튼을 클릭할 때 사용자가 입력한 이름과 연락처들을 가지고 아래의 table 에 행으로 추가-->
+
+    </form>
+    <table id="t1">
+        <caption>행추가 테이블</caption>
+        <thead>
+            <tr>
+                <td colspan="4">
+                    <input type="button" value="추가" onclick="addRow()"/>
+                </td>
+            </tr>
+            <tr>
+                <th>번호</th>
+                <th>이름</th>
+                <th>연락처</th>
+                <th>삭제</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    
+    <script>
+        
+        let idx=0;
+        let f2 = document.getElementById("s_name");
+        let f3 = document.getElementById("s_phone");
+        let table=document.getElementById("t1");//table 을 얻어낸다
+        function addRow(){
+            //추가 버튼을 클릭할 때마다 호출하는 곳
+
+            //td 라는 요소를 3개 만든다
+            let td1= document.createElement("td");//<td></td> 와 같다
+            td1.innerText = ++idx; //<td>1</td>
+
+            let td2= document.createElement("td");//<td></td> 와 같다
+            td2.innerText = f2.value; //<td>마루치</td>
+
+            
+            let td3= document.createElement("td");//<td></td> 와 같다
+            td3.innerText = f3.value; //<td>012-1313-2333</td>
+
+            let td4= document.createElement("td");//<td></td> 와 같다
+            //4번째 td 에 들어갈 버튼 객체를 생성한다.
+            // let bt= document.createElement("button");    //<button></button>
+            // bt.innerText = "삭제"; //<button>삭제</button>
+            // bt.type="button";//<button type="button">삭제</button>
+            
+            let bt = document.createElement("input");//<input></input>
+            bt.type = "button"; //<input type="button"></input>
+            bt.value = "삭제";//<input type="button" value="삭제"></input>
+            bt.id = "btn"+idx;//<input type="button" value="삭제" id="btn1"></input>
+            td4.appendChild(bt);
+
+            bt.onclick=function(){
+                //table 에 등록된 속성들 중 rowIdx 값을 가지고
+                //그 값에 해당된 행을 삭제
+                table.deleteRow(table.rowIdx);
+            }
+            //위의 각 td 들을 가질 tr 요소를 생성하자
+            let tr = document.createElement("tr");
+
+            //tr 안에 td 들을 자식요소로추가해야 한다.
+            tr.style.textAlign="center";//문자열 가운데 맞춘다
+
+            tr.appendChild(td1);
+            tr.appendChild(td2);
+            tr.appendChild(td3); //<tr><td>1</td><td>마루치</td><td>012-1313-2333</td></tr>
+            tr.appendChild(td4);
+
+            
+            tr.onmouseover= function (){
+                //해당 tr 에 마우스가 올라거면 수행하는 익명합수
+                // table 에 rowIdx 라는 변수를 만들어 현재 행의 번호를 저장한다
+                table.rowIdx = this.rowIndex;//여기서 this 는 마우스가 올라가 있는 tr  이다
+
+            };
+            
+
+            let tbody = table.children[2];//table 의 3번째 자식 요소
+            tbody.appendChild(tr);//tbody 에 tr 을 추가한다
+
+        }
+        
+    </script>
+
+</body>
+</html>
