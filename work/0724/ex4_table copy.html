@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        table{
+            border-spacing: 0px;
+            text-align: center;
+            border: 1px solid red
+        }
+        caption{
+            font-weight : bold;
+            font-size: 17px;
+            height: 30px;
+        
+            /* border: 1px solid red */
+        }
+        #tit{
+            font-weight: bold;
+        }
+
+        
+        
+    </style>
+</head>
+<body>
+    <article>
+        <p>
+            <table border="1" width="600" summery="인재개발원 숙소"   >
+                <colgroup>
+                    <col width="80px"/>
+                    <col width="130px"/>
+                    <col width="150px"/>
+                    <col width="*"/>
+                </colgroup>
+                <caption>인재개발원 숙소</caption>
+                <tfoot> <!-- 테이블의 바닥글 -->
+                    <tr>
+                        <td colspan="4" >**3세까지 무료</td>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <tr id="tit">
+                        <td>방이름</td>
+                        <td>대상</td>
+                        <td>크기</td>
+                        <td>가격</td>
+                    </tr>
+                    <tr>
+                        <td>유채방</td>
+                        <td>여성</td>
+                        <td rowspan="3">4인실</td>
+                        <td rowspan="4">1인 60,000원</td>
+                    </tr>
+                    <tr>
+                        <td>동백방</td>
+                        <td>동성</td>
+                        <!-- <td>4인실</td> -->
+                        <!-- <td>1인 60,000원</td> -->
+                    </tr>
+                    <tr>
+                        <td>동백방</td>
+                        <td>가족</td>
+                        <!-- <td>4인실</td> -->
+                        <!-- <td>1인 60,000원</td> -->
+                    </tr>
+                    <tr>
+                        <td>천혜향방</td>
+                        <td>누구나</td>
+                        <td>2인실</td>
+                        <!-- <td>1인 60,000원</td> -->
+                    </tr>
+                </tbody>
+            </table>
+
+        </p>
+    </article>
+</body>
+</html>
